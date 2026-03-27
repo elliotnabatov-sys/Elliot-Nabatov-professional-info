@@ -4,36 +4,43 @@ import { useState, useRef, useEffect } from "react";
 const NAV_LINKS = ["About", "Experience", "Ask AI", "Contact"];
 
 const HIGHLIGHTS = [
-  { val: "$500M+", label: "Budget Oversight" },
+  { val: "$500M+", label: "Budget Oversight" }, { val: "$1B+", label: "Audit Readiness" }
 ];
 
 const EXPERIENCE = [
   {
-    period: "2024–2025",
-    role: "Exercise Budget Officer",
-    org: "3d Marine Aircraft Wing, USMC",
+    period: "August 2025–March 2026",
+    role: "Business Solutions Analyst",
+    org: "Salesforce Military Fellowship",
     narrative:
-      "Oversaw more than $500M in exercise budgets across joint operations. Built financial frameworks for large-scale multinational exercises and provided senior leadership with real-time fiscal visibility they didn't have before.",
+      "Spent six months embedded in Salesforce's enterprise sales operation, working live deal cycles with C-suite clients, building pricing analyses, and translating business requirements into actionable configurations across a $5.5M+ portfolio.",
   },
   {
-    period: "2022–2024",
+    period: "December 2023–August 2025",
     role: "Comptroller",
     org: "13th Marine Expeditionary Unit",
     narrative:
-      "Full budget authority over $15M. Led an 8-person cross-functional fiscal team and rebuilt the forecasting process from scratch — cutting variance by 35%. The kind of role where every dollar decision has an operational consequence.",
+      "Full budget authority over $15M, leading an 8-person cross-functional fiscal team. Built a zero-based budget and reporting infrastructure from scratch in a constrained fiscal environment for a deployed unit in Southeast Asia",
   },
   {
-    period: "Aug 2025–Feb 2026",
-    role: "AE Program Fellow",
-    org: "Salesforce Military Fellowship (SkillBridge)",
+    period: "November 2022–December 2023",
+    role: "Senior Financial Analyst - Audit & Controls",
+    org: "I Marine Expeditionary Force",
     narrative:
-      "Embedded in live enterprise deal cycles — discovery calls, product demos, SOW negotiations. Not shadowing. Worked an enterprise Slack deal with Truepic from early-stage through close discussion.",
+      "Coordinated 30+ stakeholders across 12 operational entities representing $1B+ in assets to program-manage the Marine Corps' first successful financial audit from planning through execution. Designed the internal control frameworks and standardized workflows that made it happen.",
+  },
+  {
+    period: "June 2021–November 2022",
+    role: "Budget and Program Analyst",
+    org: "3d Marine Air Wing",
+    narrative:
+      "Managed a $500M+ annual budget, cutting unnecessary expenditures by 15% ($75M) through tighter cost controls. Built the Excel, Power BI, and MS Project dashboards that tracked $150M+ in exercise allocations and fed monthly reports directly to senior leadership.",
   },
 ];
 
 const CREDENTIALS = [
   { icon: "🏅", title: "CDFM", sub: "Top 5 graduate" },
-  { icon: "🔐", title: "Secret Clearance", sub: "Active · DoD" },
+  { icon: "🔐", title: "Secret Clearance", sub: "Active" },
   { icon: "📋", title: "PMP", sub: "Expected June 2026" },
   { icon: "🌐", title: "Russian", sub: "Fluent · DLPT-qualified" },
 ];
@@ -198,22 +205,26 @@ export default function App() {
             <div style={s.aboutGrid} className="about-grid">
               <div>
                 <p style={s.p}>
-                  I spent four years as a Marine finance officer — managing budgets that funded real operations,
-                  leading teams under pressure, and building systems where none existed. The last role had me
-                  overseeing $500M+ in exercise budgets at 3d Marine Aircraft Wing and sitting across the table
-                  from senior commanders explaining why the numbers looked the way they did.
+                  I spent four years as a Marine finance officer managing budgets that funded real operations,
+                  leading teams under pressure, and building systems from the ground up. My most memorable 
+                  role as a Financial Management Officer was serving as the in-unit CFO for a deployed unit in 
+                  Southeast Asia, directing a fiscal team of Marines across a $15M budget and advising
+                  the Commanding Officer directly on every financial decision.
                 </p>
                 <p style={s.p}>
-                  Before I separated, I did a SkillBridge fellowship at Salesforce — embedded in live enterprise
-                  deal cycles, not observing from the sidelines. I worked discovery calls, product demos, and SOW
-                  negotiations on an actual deal. It gave me a clear view of how commercial finance and business
-                  ops work outside the military.
+                  After the Marine Corps, I had the opportunity to step into the tech world at Salesforce, 
+                  learning how AI and CRM software drive business outcomes. I was facilitated discovery
+                  and implementation calls with C-Suite stakeholders and conduct account analysis on business metrics, 
+                  which gave me a clear view of how commercial finance and business ops work outside the military.
                 </p>
                 <p style={s.p}>
-                  Outside of work I'm most at home outdoors — surfing in the South Bay, skiing whenever there's
-                  snow, and generally preferring to be moving. I was a D2 cross country captain at University of
-                  Illinois Springfield, which probably explains a lot about how I approach problems: put your head
-                  down and run through it.
+                  Outside of work I'm a very outdoors person. I'm an avid surfer and skier, sometimes 
+                  doing both in the same day thanks to the California climate, and I also enjoy teaching 
+                  others the sport on weekends. I recently picked up sailing as well. In college I was a 
+                  D2 cross country and track athlete at University of Illinois Springfield. 
+                  Lately I've been utilizing AI to learn new skills, including how to build and  
+                  maintain a website with AI integration, an interest that started during 
+                  my time at Salesforce through daily coursework on AI use and functionality.
                 </p>
                 <div style={s.credRow} className="cred-row">
                   {CREDENTIALS.map(({ icon, title, sub }) => (
@@ -231,7 +242,7 @@ export default function App() {
                 <div style={s.sideCard}>
                   <div style={s.sideCardLabel}>Currently</div>
                   <p style={s.sideCardText}>
-                    Actively interviewing for FP&A, program control, and business
+                    Actively interviewing for FP&A, project and program management, and business
                     operations roles in the LA/OC market. Available immediately.
                   </p>
                 </div>
@@ -246,7 +257,7 @@ export default function App() {
                 <div style={s.sideCard}>
                   <div style={s.sideCardLabel}>Outside work</div>
                   <p style={s.sideCardText}>
-                    Surfing, skiing, sailing — and anything that gets me outside.
+                    Surfing, skiing, sailing and anything that gets me outside.
                     D2 cross country captain. Fluent Russian speaker.
                   </p>
                 </div>
