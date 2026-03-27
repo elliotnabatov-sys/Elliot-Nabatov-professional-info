@@ -1,13 +1,11 @@
 import { useState, useRef, useEffect } from "react";
+import "./responsive.css";
 
 // ─── Constants ────────────────────────────────────────────
 const NAV_LINKS = ["About", "Experience", "Ask AI", "Contact"];
 
 const HIGHLIGHTS = [
   { val: "$500M+", label: "Budget Oversight" },
-  { val: "$15M", label: "Full Budget Authority" },
-  { val: "35%", label: "Forecast Improvement" },
-  { val: "4 yrs", label: "Active Duty" },
 ];
 
 const EXPERIENCE = [
@@ -35,7 +33,7 @@ const EXPERIENCE = [
 ];
 
 const CREDENTIALS = [
-  { icon: "🏅", title: "CDFM", sub: "Top 5% in course" },
+  { icon: "🏅", title: "CDFM", sub: "Top 5 graduate" },
   { icon: "🔐", title: "Secret Clearance", sub: "Active · DoD" },
   { icon: "📋", title: "PMP", sub: "Expected June 2026" },
   { icon: "🌐", title: "Russian", sub: "Fluent · DLPT-qualified" },
@@ -123,13 +121,14 @@ export default function App() {
       <div style={s.gridBg} />
 
       {/* Nav */}
-      <nav style={s.nav}>
-        <span style={s.brand}>E · N</span>
-        <div style={s.navLinks}>
+      <nav style={s.nav} className="nav-inner">
+        <span style={s.brand} className="brand">E · N</span>
+        <div style={s.navLinks} className="nav-links">
           {NAV_LINKS.map((l) => (
             <button
               key={l}
               style={{ ...s.navBtn, ...(active === l ? s.navBtnActive : {}) }}
+              className="nav-btn"
               onClick={() => setActive(l)}
             >
               {l}
@@ -139,20 +138,20 @@ export default function App() {
       </nav>
 
       {/* ── HERO ── */}
-      <header style={s.hero}>
+      <header style={s.hero} className="hero">
         <div style={s.heroLeft}>
           <div style={s.pill}>USMC · Secret Clearance · LA/OC</div>
-          <h1 style={s.name}>
+          <h1 style={s.name} className="hero-name">
             Elliot <span style={s.nameGold}>Nabatov</span>
           </h1>
-          <p style={s.tagline}>
+          <p style={s.tagline} className="hero-tagline">
             Marine officer turned finance & ops leader. Four years managing budgets where
             the stakes were real. Now bringing that to the private sector.
           </p>
-          <div style={s.highlights}>
+          <div style={s.highlights} className="highlights">
             {HIGHLIGHTS.map(({ val, label }) => (
               <div key={label} style={s.highlight}>
-                <span style={s.highlightVal}>{val}</span>
+                <span style={s.highlightVal} className="highlight-val">{val}</span>
                 <span style={s.highlightLabel}>{label}</span>
               </div>
             ))}
@@ -168,7 +167,7 @@ export default function App() {
         </div>
 
         {/* Hero AI preview */}
-        <div style={s.heroRight}>
+        <div style={s.heroRight} className="hero-right">
           <div style={s.heroChat}>
             <div style={s.heroChatHeader}>
               <span style={s.heroChatDot} />
@@ -191,13 +190,13 @@ export default function App() {
       </header>
 
       {/* ── MAIN ── */}
-      <main style={s.main}>
+      <main style={s.main} className="main">
 
         {/* ABOUT */}
         {active === "About" && (
           <section style={s.section}>
             <Label>About</Label>
-            <div style={s.aboutGrid}>
+            <div style={s.aboutGrid} className="about-grid">
               <div>
                 <p style={s.p}>
                   I spent four years as a Marine finance officer — managing budgets that funded real operations,
@@ -217,7 +216,7 @@ export default function App() {
                   Illinois Springfield, which probably explains a lot about how I approach problems: put your head
                   down and run through it.
                 </p>
-                <div style={s.credRow}>
+                <div style={s.credRow} className="cred-row">
                   {CREDENTIALS.map(({ icon, title, sub }) => (
                     <div key={title} style={s.credChip}>
                       <span>{icon}</span>
@@ -229,7 +228,7 @@ export default function App() {
                   ))}
                 </div>
               </div>
-              <div style={s.aboutSide}>
+              <div style={s.aboutSide} className="about-side">
                 <div style={s.sideCard}>
                   <div style={s.sideCardLabel}>Currently</div>
                   <p style={s.sideCardText}>
@@ -263,8 +262,8 @@ export default function App() {
             <Label>Experience</Label>
             <div style={s.expList}>
               {EXPERIENCE.map((e, i) => (
-                <div key={i} style={s.expCard}>
-                  <div style={s.expMeta}>
+                <div key={i} style={s.expCard} className="exp-card">
+                  <div style={s.expMeta} className="exp-meta">
                     <span style={s.expPeriod}>{e.period}</span>
                     {i < EXPERIENCE.length - 1 && <div style={s.expLine} />}
                   </div>
@@ -295,9 +294,9 @@ export default function App() {
             </p>
 
             {/* Suggested questions */}
-            <div style={s.suggestedRow}>
+            <div style={s.suggestedRow} className="suggested-row">
               {SUGGESTED.map((q) => (
-                <button key={q} style={s.suggestedBtn} onClick={() => send(q)}>
+                <button key={q} style={s.suggestedBtn} className="suggested-btn" onClick={() => send(q)}>
                   {q}
                 </button>
               ))}
@@ -360,7 +359,7 @@ export default function App() {
         {active === "Contact" && (
           <section style={s.section}>
             <Label>Contact</Label>
-            <div style={s.contactGrid}>
+            <div style={s.contactGrid} className="contact-grid">
               <div>
                 <p style={s.p}>
                   Open to conversations about FP&A, program control, and business operations

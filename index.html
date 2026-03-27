@@ -16,6 +16,38 @@
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: #080d1a; }
       ::-webkit-scrollbar-thumb { background: #2a3050; border-radius: 3px; }
+
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: 1fr !important;
+          padding: 36px 20px 32px !important;
+          gap: 28px !important;
+        }
+        .hero-right {
+          display: none !important;
+        }
+        .main {
+          padding: 0 20px !important;
+        }
+        .about-grid {
+          grid-template-columns: 1fr !important;
+          gap: 28px !important;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr !important;
+          gap: 28px !important;
+        }
+        .nav-inner {
+          padding: 12px 20px !important;
+        }
+        .nav-links {
+          gap: 2px !important;
+        }
+        .nav-btn {
+          padding: 6px 10px !important;
+          font-size: 11px !important;
+        }
+      }
     </style>
   </head>
   <body>
