@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import "./responsive.css";
 
 // ─── Constants ────────────────────────────────────────────
 const NAV_LINKS = ["About", "Experience", "Ask AI", "Contact"];
