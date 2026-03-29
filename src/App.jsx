@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+ import { useState, useRef, useEffect } from "react";
 
 // ─── Constants ────────────────────────────────────────────
 const NAV_LINKS = ["About", "Experience", "Ask AI", "Contact"];
@@ -73,6 +73,7 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
   const heroChatMessagesRef = useRef(null);
+  const mainRef = useRef(null);
 
  useEffect(() => {
     if (messages.length > 1) {
@@ -117,7 +118,12 @@ export default function App() {
       setLoading(false);
     }
   }
-
+function switchSection(section) {
+    setActive(section);
+    setTimeout(() => {
+      mainRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 50);
+  }
   function handleKey(e) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -139,7 +145,7 @@ export default function App() {
               key={l}
               style={{ ...s.navBtn, ...(active === l ? s.navBtnActive : {}) }}
               className="nav-btn"
-              onClick={() => setActive(l)}
+              onClick={() => switchSection(l)}
             >
               {l}
             </button>
@@ -168,7 +174,7 @@ export default function App() {
             ))}
           </div>
           <div style={s.heroActions}>
-            <button style={s.btnGhost} onClick={() => setActive("Contact")}>
+            <button style={s.btnGhost} onClick={() => switchSection("Contact")}>
               Get in Touch
             </button>
           </div>
@@ -234,7 +240,7 @@ export default function App() {
       </header>
 
       {/* ── MAIN ── */}
-      <main style={s.main} className="main">
+      <main style={s.main} className="main" ref={mainRef}>
 
         {/* ABOUT */}
         {active === "About" && (
@@ -334,7 +340,7 @@ export default function App() {
             </div>
             <div style={s.expFootnote}>
               Want specifics? Ask the AI rep below — it has full context on every role.
-              <button style={s.expFootnoteBtn} onClick={() => setActive("Ask AI")}>
+              <button style={s.expFootnoteBtn} onClick={() => switchSection("Ask AI")}>
                 Ask AI Rep →
               </button>
             </div>
