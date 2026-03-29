@@ -278,8 +278,15 @@ export default function App() {
                   <div style={s.sideCardLabel}>Currently</div>
                   <p style={s.sideCardText}>
                     Actively pursuing PMP and interviewing for open roles 
-                    in the LA/OC market. View availability here 
-                    https://calendly.com/elliotnabatov/30min
+                    in the LA/OC market. Schedule a call and view availability{" "}
+                    <a 
+                      href="https://calendly.com/elliotnabatov/30min" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      style={{ color: "#c9a84c", textDecoration: "underline" }}
+                    >
+                      here
+                    </a>.
                   </p>
                 </div>
                 <div style={s.sideCard}>
