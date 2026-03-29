@@ -53,7 +53,6 @@ const INITIAL_MESSAGE = {
 
 const SUGGESTED = [
   "What's his budget experience?",
-  "Does he have a security clearance?",
   "What roles is he targeting?",
   "Tell me about his Salesforce experience",
 ];
@@ -249,12 +248,12 @@ export default function App() {
                 </p>
                 <p style={s.p}>
                   After the Marine Corps, I had the opportunity to step into the tech world at Salesforce, 
-                  learning how AI and CRM software drive business outcomes. I was facilitated discovery
-                  and implementation calls with C-Suite stakeholders and conduct account analysis on business metrics, 
+                  learning how AI and CRM software drive business outcomes. I facilitated discovery
+                  and implementation calls with C-Suite stakeholders and conducted account analysis on business metrics, 
                   which gave me a clear view of how commercial finance and business ops work outside the military.
                 </p>
                 <p style={s.p}>
-                  Outside of work I'm a very outdoors person. I'm an avid surfer and skier, sometimes 
+                  Outside of work I'm a very outdoorsy person. I'm an avid surfer and skier, sometimes 
                   doing both in the same day thanks to the California climate, and I also enjoy teaching 
                   others the sport on weekends. I recently picked up sailing as well. In college I was a 
                   D2 cross country and track athlete at University of Illinois Springfield. 
@@ -278,8 +277,9 @@ export default function App() {
                 <div style={s.sideCard}>
                   <div style={s.sideCardLabel}>Currently</div>
                   <p style={s.sideCardText}>
-                    Actively interviewing for FP&A, project and program management, and business
-                    operations roles in the LA/OC market. Available immediately.
+                    Actively pursuing PMP and interviewing for open roles 
+                    in the LA/OC market. View availability here 
+                    https://calendly.com/elliotnabatov/30min
                   </p>
                 </div>
                 <div style={s.sideCard}>
@@ -336,7 +336,7 @@ export default function App() {
             <Label>Ask My AI Rep</Label>
             <p style={s.agentIntro}>
               This AI has full context on my career, credentials, and background.
-              If you're a recruiter or hiring manager, ask it anything — it'll give you a straight answer.
+              Ask it anything and it'll give you a straight answer.
             </p>
 
             {/* Suggested questions */}
@@ -424,7 +424,7 @@ export default function App() {
                   </div>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/elliotnabatov"
+                  href="https://www.linkedin.com/in/elliot-nabatov-usmc3404/"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={s.contactCard}
@@ -432,17 +432,29 @@ export default function App() {
                   <span style={s.contactIcon}>in</span>
                   <div>
                     <div style={s.contactCardTitle}>LinkedIn</div>
-                    <div style={s.contactCardSub}>linkedin.com/in/elliotnabatov</div>
+                    <div style={s.contactCardSub}>linkedin.com/in/elliot-nabatov-usmc3404/</div>
                   </div>
                 </a>
-                <div style={s.contactMeta}>
-                  {["Redondo Beach, CA", "Open to hybrid or in-person (LA/OC)", "Active Secret Clearance"].map((item) => (
-                    <div key={item} style={s.contactMetaRow}>
-                      <span style={s.dot} />
-                      {item}
-                    </div>
-                  ))}
+                <div style={s.contactCard}>
+                  <span style={s.contactIcon}>📞</span>
+                  <div>
+                    <div style={s.contactCardTitle}>Phone</div>
+                    <div style={s.contactCardSub}>847-404-2822</div> 
+                  </div>
                 </div>
+                <a
+
+                href="https://calendly.com/elliotnabatov/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={s.contactCard}
+                >
+                  <span style={s.contactIcon}>📅</span>
+                  <div>
+                    <div style={s.contactCardTitle}>Schedule a Call</div>
+                    <div style={s.contactCardSub}>calendly.com/elliotnabatov/30min</div>
+                  </div>
+                </a>
               </div>
             </div>
           </section>
