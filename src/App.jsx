@@ -72,10 +72,13 @@ export default function App() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const chatEndRef = useRef(null);
+  const heroChatMessagesRef = useRef(null);
 
-  useEffect(() => {
+ useEffect(() => {
     if (messages.length > 1) {
-      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      if (heroChatMessagesRef.current) {
+        heroChatMessagesRef.current.scrollTop = heroChatMessagesRef.current.scrollHeight;
+      }
     }
   }, [messages, loading]);
 
@@ -178,7 +181,7 @@ export default function App() {
               <span style={s.heroChatDot} />
               <span style={s.heroChatTitle}>AI REP — LIVE</span>
             </div>
-            <div style={s.heroChatMessages}>
+            <div style={s.heroChatMessages} ref={heroChatMessagesRef}>
               {messages.map((m, i) => (
                 <div
                   key={i}
@@ -278,14 +281,15 @@ export default function App() {
                   <div style={s.sideCardLabel}>Currently</div>
                   <p style={s.sideCardText}>
                     Actively pursuing PMP and interviewing for open roles 
-                    in the LA/OC market. Schedule a call and view availability{" "}
+                    in the LA/OC market. Schedule a call and view availability:
+                    {" "}
                     <a 
                       href="https://calendly.com/elliotnabatov/30min" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       style={{ color: "#c9a84c", textDecoration: "underline" }}
                     >
-                      here
+                      calendly.com/elliotnabatov/30min
                     </a>.
                   </p>
                 </div>
