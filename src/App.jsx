@@ -9,28 +9,28 @@ const HIGHLIGHTS = [
 
 const EXPERIENCE = [
   {
-    period: "August 2025–March 2026",
+    period: "Aug 2025–Mar 2026",
     role: "Business Solutions Analyst",
     org: "Salesforce Military Fellowship",
     narrative:
       "Spent six months embedded in Salesforce's enterprise sales operation, working live deal cycles with C-suite clients, building pricing analyses, and translating business requirements into actionable configurations across a $5.5M+ portfolio.",
   },
   {
-    period: "December 2023–August 2025",
+    period: "Dec 2023–Aug 2025",
     role: "Comptroller",
     org: "13th Marine Expeditionary Unit",
     narrative:
       "Full budget authority over $15M, leading an 8-person cross-functional fiscal team. Built a zero-based budget and reporting infrastructure from scratch in a constrained fiscal environment for a deployed unit in Southeast Asia",
   },
   {
-    period: "November 2022–December 2023",
+    period: "Nov 2022–Dec 2023",
     role: "Senior Financial Analyst - Audit & Controls",
     org: "I Marine Expeditionary Force",
     narrative:
       "Coordinated 30+ stakeholders across 12 operational entities representing $1B+ in assets to program-manage the Marine Corps' first successful financial audit from planning through execution. Designed the internal control frameworks and standardized workflows that made it happen.",
   },
   {
-    period: "June 2021–November 2022",
+    period: "June 2021–Nov 2022",
     role: "Budget and Program Analyst",
     org: "3d Marine Air Wing",
     narrative:
@@ -146,13 +146,14 @@ export default function App() {
       {/* ── HERO ── */}
       <header style={s.hero} className="hero">
         <div style={s.heroLeft}>
-          <div style={s.pill}>USMC · Secret Clearance · LA/OC</div>
+          <div style={s.pill}>USMC Veteran · Finance Leader</div>
           <h1 style={s.name} className="hero-name">
             Elliot <span style={s.nameGold}>Nabatov</span>
           </h1>
           <p style={s.tagline} className="hero-tagline">
-            Marine officer turned finance & ops leader. Four years managing budgets where
-            the stakes were real. Now bringing that to the private sector.
+            Marine finance officer with four years managing large budgets and leading teams. 
+            Recent experience as a business solutions analyst at Salesforce 
+            working enterprise deals with C-suite clients. 
           </p>
           <div style={s.highlights} className="highlights">
             {HIGHLIGHTS.map(({ val, label }) => (
@@ -163,33 +164,66 @@ export default function App() {
             ))}
           </div>
           <div style={s.heroActions}>
-            <button style={s.btnGold} onClick={() => setActive("Ask AI")}>
-              Ask My AI Rep →
-            </button>
             <button style={s.btnGhost} onClick={() => setActive("Contact")}>
               Get in Touch
             </button>
           </div>
         </div>
 
-        {/* Hero AI preview */}
+        {/* Hero AI Chat — full and functional */}
         <div style={s.heroRight} className="hero-right">
-          <div style={s.heroChat}>
+          <div style={s.heroChatFull}>
             <div style={s.heroChatHeader}>
               <span style={s.heroChatDot} />
               <span style={s.heroChatTitle}>AI REP — LIVE</span>
             </div>
-            <div style={s.heroChatBody}>
-              <div style={s.heroBubbleAI}>
-                Have a question about Elliot? Ask me anything — background,
-                clearance, availability, fit for a specific role.
-              </div>
+            <div style={s.heroChatMessages}>
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  style={{
+                    ...s.heroBubble,
+                    ...(m.role === "user" ? s.heroBubbleUser : s.heroBubbleAssistant),
+                  }}
+                >
+                  {m.role === "assistant" && (
+                    <span style={s.bubbleLabel}>AI REP</span>
+                  )}
+                  <p style={s.heroBubbleText}>{m.content}</p>
+                </div>
+              ))}
+              {loading && (
+                <div style={{ ...s.heroBubble, ...s.heroBubbleAssistant }}>
+                  <span style={s.bubbleLabel}>AI REP</span>
+                  <p style={{ ...s.heroBubbleText, opacity: 0.4 }}>Thinking...</p>
+                </div>
+              )}
+              <div ref={chatEndRef} />
+            </div>
+            <div style={s.heroChatInputRow}>
+              <textarea
+                style={s.heroChatTextarea}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKey}
+                placeholder="Ask about experience, clearance, availability..."
+                rows={2}
+              />
               <button
-                style={s.heroChatCTA}
-                onClick={() => setActive("Ask AI")}
+                style={{
+                  ...s.btnGold,
+                  ...s.heroChatSendBtn,
+                  opacity: loading || !input.trim() ? 0.4 : 1,
+                }}
+                onClick={() => send()}
+                disabled={loading || !input.trim()}
               >
-                Open Full Chat →
+                Send
               </button>
+            </div>
+            <div style={s.heroDisclaimer}>
+              <span style={s.disclaimerDot} />
+              Questions are not stored, logged, or tracked.
             </div>
           </div>
         </div>
@@ -372,11 +406,11 @@ export default function App() {
             <div style={s.contactGrid} className="contact-grid">
               <div>
                 <p style={s.p}>
-                  Open to conversations about FP&A, program control, and business operations
-                  roles in LA/OC. Active Secret clearance. Available immediately.
+                  Open to connecting about available roles in LA and Orange County area. 
+                  Active Secret clearance. PMP in progress.
                 </p>
                 <p style={s.p}>
-                  Reach out directly — I respond fast.
+                  Reach out directly on email or LinkedIn, I respond fast.
                 </p>
               </div>
               <div style={s.contactCards}>
@@ -530,35 +564,49 @@ const s = {
     textTransform: "uppercase", cursor: "pointer",
     fontFamily: "'EB Garamond', Georgia, serif",
   },
-  heroRight: {},
-  heroChat: {
-    background: NAVY3, border: "1px solid rgba(201,168,76,0.2)",
-    overflow: "hidden",
+ heroRight: { minWidth: 0 },
+  heroChatFull: {
+    background: NAVY2, border: "1px solid rgba(201,168,76,0.2)",
+    display: "flex", flexDirection: "column", height: "520px", overflow: "hidden",
   },
   heroChatHeader: {
     display: "flex", alignItems: "center", gap: "8px",
     padding: "12px 18px", borderBottom: "1px solid rgba(201,168,76,0.1)",
-    background: "rgba(201,168,76,0.04)",
+    background: "rgba(201,168,76,0.04)", flexShrink: 0,
   },
   heroChatDot: {
     width: "8px", height: "8px", borderRadius: "50%",
-    background: GOLD, display: "inline-block",
-    boxShadow: `0 0 8px ${GOLD}`,
+    background: GOLD, display: "inline-block", boxShadow: `0 0 8px ${GOLD}`,
   },
   heroChatTitle: {
     fontSize: "10px", letterSpacing: "0.2em", color: GOLD, textTransform: "uppercase",
   },
-  heroChatBody: { padding: "20px" },
-  heroBubbleAI: {
-    background: NAVY2, border: "1px solid rgba(201,168,76,0.1)",
-    padding: "14px 16px", fontSize: "14px", lineHeight: "1.7",
-    color: "#b0b8cc", marginBottom: "16px",
+  heroChatMessages: {
+    flex: 1, overflowY: "auto", padding: "16px",
+    display: "flex", flexDirection: "column", gap: "12px",
   },
-  heroChatCTA: {
-    background: "none", border: "1px solid rgba(201,168,76,0.3)",
-    color: GOLD, padding: "10px 18px", fontSize: "12px",
-    letterSpacing: "0.1em", cursor: "pointer",
-    fontFamily: "'EB Garamond', Georgia, serif", width: "100%",
+  heroBubble: { maxWidth: "90%", padding: "10px 14px" },
+  heroBubbleAssistant: {
+    background: NAVY3, border: "1px solid rgba(201,168,76,0.1)", alignSelf: "flex-start",
+  },
+  heroBubbleUser: {
+    background: "rgba(201,168,76,0.1)", border: "1px solid rgba(201,168,76,0.22)", alignSelf: "flex-end",
+  },
+  heroBubbleText: { fontSize: "13px", lineHeight: "1.65", color: "#b8c0d4", margin: 0 },
+  heroChatInputRow: {
+    display: "flex", borderTop: "1px solid rgba(201,168,76,0.1)",
+    padding: "10px", gap: "8px", flexShrink: 0,
+  },
+  heroChatTextarea: {
+    flex: 1, background: NAVY, border: "1px solid rgba(201,168,76,0.18)",
+    color: OFF_WHITE, padding: "8px 12px", fontSize: "13px",
+    fontFamily: "'EB Garamond', Georgia, serif", resize: "none", outline: "none", lineHeight: "1.5",
+  },
+  heroChatSendBtn: { padding: "8px 16px", alignSelf: "stretch", fontSize: "11px", flexShrink: 0 },
+  heroDisclaimer: {
+    display: "flex", alignItems: "center", gap: "8px",
+    padding: "8px 16px", fontSize: "11px", color: MUTED,
+    borderTop: "1px solid rgba(201,168,76,0.08)", flexShrink: 0,
   },
 
   main: {
