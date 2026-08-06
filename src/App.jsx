@@ -9,11 +9,25 @@ const HIGHLIGHTS = [
 
 const EXPERIENCE = [
   {
-    period: "Aug 2025–Mar 2026",
-    role: "Business Solutions Analyst",
-    org: "Salesforce Military Fellowship",
+    period: "Aug 2025–Jul 2026",
+    role: "Contracting and Corporate Fellowship",
+    org: "Contracting and Corporate Fellowship",
     narrative:
-      "Spent six months embedded in Salesforce's enterprise sales operation, working live deal cycles with C-suite clients, building pricing analyses, and translating business requirements into actionable configurations across a $5.5M+ portfolio.",
+      "Combined experience spanning corporate fellowship work and defense contracting support, with responsibilities in enterprise operations, program execution, and stakeholder-facing analysis.",
+    subEntries: [
+      {
+        role: "Financial Operations and Program Manager",
+        org: "Defense Services Contractor (United States Navy programs)",
+        narrative:
+          "Supported defense-focused operations by translating business and program needs into clear requirements, improving workflows, and coordinating cross-functional execution. Built strong experience in stakeholder communication, reporting, process improvement, and operational problem-solving in fast-moving government and contractor environments.",
+      },
+      {
+        role: "Business Solutions Analyst",
+        org: "Salesforce Military Fellowship",
+        narrative:
+          "Spent six months embedded in Salesforce's enterprise sales operation, working live deal cycles with C-suite clients, building pricing analyses, and translating business requirements into actionable configurations across a $5.5M+ portfolio.",
+      },
+    ],
   },
   {
     period: "Dec 2023–Aug 2025",
@@ -43,6 +57,19 @@ const CREDENTIALS = [
   { icon: "🔐", title: "Secret Clearance", sub: "Active" },
   { icon: "📋", title: "PMP", sub: "Expected June 2026" },
   { icon: "🌐", title: "Russian", sub: "Fluent · DLPT-qualified" },
+];
+
+const SKILLS_TOOLS = [
+  "Salesforce",
+  "Excel",
+  "Power BI",
+  "MS Project",
+  "Stakeholder Management",
+  "Process Improvement",
+  "Budgeting & Forecasting",
+  "Requirements Analysis",
+  "Executive Reporting",
+  "CRM & Ops Support",
 ];
 
 const INITIAL_MESSAGE = {
@@ -281,6 +308,16 @@ function switchSection(section) {
                     </div>
                   ))}
                 </div>
+                <div style={{ ...s.credRow, marginTop: "16px" }} className="cred-row">
+                  {SKILLS_TOOLS.map((skill) => (
+                    <div key={skill} style={s.credChip}>
+                      <span style={{ fontSize: "12px" }}>●</span>
+                      <div>
+                        <div style={s.credTitle}>{skill}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
               <div style={s.aboutSide} className="about-side">
                 <div style={s.sideCard}>
@@ -332,8 +369,27 @@ function switchSection(section) {
                   </div>
                   <div style={s.expContent}>
                     <h3 style={s.expRole}>{e.role}</h3>
-                    <span style={s.expOrg}>{e.org}</span>
-                    <p style={s.expNarrative}>{e.narrative}</p>
+                    {e.org && <span style={s.expOrg}>{e.org}</span>}
+                    {e.narrative && <p style={s.expNarrative}>{e.narrative}</p>}
+                    {e.subEntries?.length > 0 && (
+                      <div style={{ marginTop: "12px", display: "grid", gap: "10px" }}>
+                        {e.subEntries.map((sub, idx) => (
+                          <div
+                            key={idx}
+                            style={{
+                              paddingTop: "8px",
+                              borderTop: idx === 0 ? "1px solid rgba(201,168,76,0.18)" : "1px solid rgba(201,168,76,0.18)",
+                            }}
+                          >
+                            <div style={{ color: GOLD, fontSize: "13px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                              {sub.role}
+                            </div>
+                            <div style={{ ...s.expOrg, marginTop: "4px" }}>{sub.org}</div>
+                            <p style={{ ...s.expNarrative, marginTop: "6px", marginBottom: 0 }}>{sub.narrative}</p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
